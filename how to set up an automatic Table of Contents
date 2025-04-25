@@ -1,0 +1,32 @@
+🛠️ Step-by-Step Setup Guide (Auto Table of Contents)
+✅ Step 1: Edit Your Blog Post
+Go to Pages → Blog → Click on your post.
+
+Click “Edit” to enter the post editor.
+
+✅ Step 2: Add a Code Block for the Table of Contents
+Scroll to the top of your blog post.
+
+Click “+” → Add Block → Code.
+
+Paste this code:
+<div id="toc" style="margin-bottom: 20px;"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toc = document.getElementById("toc");
+    const headers = document.querySelectorAll("h2,h3,h4");
+    if (!headers.length) return;
+
+    const list = document.createElement("ul");
+    headers.forEach((header, index) => {
+      const id = `toc-${index}`;
+      header.setAttribute("id", id);
+      const item = document.createElement("li");
+      item.innerHTML = `<a href="#${id}">${header.innerText}</a>`;
+      list.appendChild(item);
+    });
+    toc.innerHTML = "<strong>Table of Contents</strong>";
+    toc.appendChild(list);
+  });
+</script>
